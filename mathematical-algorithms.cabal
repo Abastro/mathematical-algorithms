@@ -20,6 +20,8 @@ common deps
     build-depends:
         base ^>=4.17.2.1,
         vector,
+        random,
+        timeit,
 
 library
     import:           warnings, deps
