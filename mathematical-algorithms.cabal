@@ -16,11 +16,23 @@ build-type:         Simple
 common warnings
     ghc-options: -Wall
 
+common deps
+    build-depends:
+        base ^>=4.17.2.1,
+        vector,
+
+library
+    import:           warnings, deps
+    exposed-modules:
+        Poly
+    hs-source-dirs:   src
+    default-language: GHC2021
+
 executable mathematical-algorithms
-    import:           warnings
+    import:           warnings, deps
     main-is:          Main.hs
     -- other-modules:
-    -- other-extensions:
-    build-depends:    base ^>=4.17.2.1
+    build-depends:
+        mathematical-algorithms
     hs-source-dirs:   app
     default-language: GHC2021
