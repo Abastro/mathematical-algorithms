@@ -21,7 +21,8 @@ main = do
   experimentFor 250
   experimentFor 500
   experimentFor 1000
-  karatsubaFor 3000
+  karatsubaFor 2000
+  karatsubaFor 4000
   where
     experimentFor n = do
       setStdGen $ mkStdGen 10
