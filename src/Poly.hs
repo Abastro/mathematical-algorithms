@@ -22,6 +22,9 @@ vecZipPad0With f xs ys = V.generate (max (V.length xs) (V.length ys)) $
 newtype Poly a = Poly (V.Vector a)
   deriving (Eq)
 
+unwrapPoly :: Poly a -> V.Vector a
+unwrapPoly (Poly v) = v
+
 makePoly :: (V.Unbox a) => [a] -> Poly a
 makePoly = Poly . V.fromList
 
