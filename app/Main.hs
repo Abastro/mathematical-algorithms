@@ -18,15 +18,9 @@ main = do
     putStrLn $ "Karatsuba f * g: " <> show (normalize $ karatsubaMult f g)
 
   putStrLn ""
-  -- experimentFor 250
-  -- experimentFor 500
-  -- experimentFor 1000
-  -- karatsubaFor 2000
-  -- karatsubaFor 4000
-
-  fastKaratsubaFor 512
-  fastKaratsubaFor 1024
-  fastKaratsubaFor 2048
+  experimentFor 512
+  experimentFor 1024
+  experimentFor 2048
   fastKaratsubaFor 4096
   fastKaratsubaFor 8192
   fastKaratsubaFor 16384
@@ -43,7 +37,10 @@ main = do
       _ <- timeIt $ evaluate (f * g)
       putStrLn "Karatsuba:"
       _ <- timeIt $ evaluate (karatsubaMult f g)
+      putStrLn "Fast Karatsuba:"
+      _ <- timeIt $ evaluate (karatsuba 0 (+) (-) (*) (unwrapPoly f) (unwrapPoly g))
       putStrLn "Finished"
+      putStrLn ""
 
     karatsubaFor n = do
       setStdGen $ mkStdGen 10
@@ -54,6 +51,7 @@ main = do
       putStrLn "Karatsuba:"
       _ <- timeIt $ evaluate (karatsubaMult f g)
       putStrLn "Finished"
+      putStrLn ""
 
     fastKaratsubaFor n = do
       setStdGen $ mkStdGen 10
@@ -64,3 +62,4 @@ main = do
       putStrLn "Fast Karatsuba:"
       _ <- timeIt $ evaluate (karatsuba 0 (+) (-) (*) (unwrapPoly f) (unwrapPoly g))
       putStrLn "Finished"
+      putStrLn ""
