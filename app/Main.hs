@@ -5,6 +5,7 @@ import Poly
 import System.Random
 import System.TimeIt
 import Control.Monad
+import GHC.Exts (inline)
 import PolyFast
 
 main :: IO ()
@@ -38,7 +39,7 @@ main = do
       putStrLn "Karatsuba:"
       _ <- timeIt $ evaluate (karatsubaMult f g)
       putStrLn "Fast Karatsuba:"
-      _ <- timeIt $ evaluate (karatsuba 0 (+) (-) (*) (unwrapPoly f) (unwrapPoly g))
+      _ <- timeIt $ evaluate (inline $ karatsuba 0 (+) (-) (*) (unwrapPoly f) (unwrapPoly g))
       putStrLn "Finished"
       putStrLn ""
 
@@ -60,6 +61,6 @@ main = do
       f :: Poly Int <- randomPoly n
       g :: Poly Int <- randomPoly n
       putStrLn "Fast Karatsuba:"
-      _ <- timeIt $ evaluate (karatsuba 0 (+) (-) (*) (unwrapPoly f) (unwrapPoly g))
+      _ <- timeIt $ evaluate (inline $ karatsuba 0 (+) (-) (*) (unwrapPoly f) (unwrapPoly g))
       putStrLn "Finished"
       putStrLn ""
